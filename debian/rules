@@ -13,17 +13,9 @@ export DEB_BUILD_HARDENING=1
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
 
-override_dh_auto_configure:
-	 $(CURDIR)/configure.nacl
-	 $(CURDIR)/configure.curvedns
-
 override_dh_auto_build:
 	dh_auto_build
-	ronn -r $(CURDIR)/debian/curvedns.8.ronn
-	ronn -r $(CURDIR)/debian/curvedns-keygen.1.ronn
-
-override_dh_installinit:
-	dh_installinit
+	ronn -r $(CURDIR)/debian/ropgadget.8.ronn
 
 %:
 	dh $@
