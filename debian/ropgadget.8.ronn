@@ -1,0 +1,66 @@
+curvedns(8) -- high-speed high-security elliptic-curve cryptography DNS server
+====
+
+## SYNOPSIS
+
+`curvedns` [Usage]: curvedns <listening-IPs> <listening port> <target DNS server IP> <target DNS server port>
+
+## DESCRIPTION
+
+curvedns(8) is the first publicly released forwarding implementation that implements the DNSCurve protocol.
+
+-   <listening-IPs>: The IP addresses on which CurveDNS should listen. If you have more IP addresses, separate them by a comma (,). Notice both IPv4 and IPv6 addresses can be used. Valid inputs are for example: 192.168.0.1 and fe80::1,10.3.11.86 If you want CurveDNS to listen on all IP addresses use 0.0.0.0 (for IPv4 hosts) or :: (for IPv6 hosts).
+
+-   <listening port>: The port number on which CurveDNS should listen. If you want to use a port number beneath 1024, you must be root - nevertheless, CurveDNS will eventually drop the root privileges once it has done all the tasks that need root.
+
+-   <target DNS server IP>: This is the IP address of the authoritative name server we are forwarding non-DNSCurve queries to. This can be either an IPv4 or IPv6 address.
+
+-   <target DNS server port>: The port number of the authoritative name server we are forwarding for. Usually this will be 53.
+
+You will notice all the above discussed options are mandatory. CurveDNS will complain when some argument is missing.
+
+
+## ENVIRONMENT VARIABLES
+
+Now that the arguments options have been discussed, it is time to look at the settings that can be passed using the program's environment. We start by discussing the options that are mandatory, i.e. when CurveDNS is started these environment variables must exist.
+
+-    <CURVEDNS_PRIVATE_KEY>: the hexadecimal representation of the server's private (secret) key.
+-    <UID>: the user id of the user we are switching to when we have done all root specific actions.
+-    <GID>: the group id of this same user.
+
+The following environment options are optional, but might be handy in some cases or when you are very specific in what you want CurveDNS to do. Notice that when you do not specify any of these options in the environment, the suffixing default value will be used.
+
+-    <CURVEDNS_INTERNAL_TIMEOUT>: number of seconds when to consider the target server has timeout (default: 1.2)
+
+-    <CURVEDNS_UDP_TRIES>: total number of tries towards the target server before we drop the query (default: 2)
+
+-    <CURVEDNS_TCP_NUMBER>: number of simultaneous TCP connections that are allowed (default: 25)
+
+-    <CURVEDNS_TCP_TIMEOUT>: number of seconds before the TCP session to the client times out (default: 60.0)
+
+-    <CURVEDNS_SHARED_SECRETS>: number of shared secrets that can be cached (default: 5000)
+
+    The more, the better. It is a good idea to temporarily set the debug level (see next option) to debug when you alter this value. Using this level, CurveDNS will show during startup how much memory it reserved for the shared secret cache. In this way you can check whether this will suit your system's physical memory boundaries.
+
+-    <CURVEDNS_DEBUG>: what information should be shown, i.e. the debug level. The number represents the debug level:
+        1: fatal
+        2: error
+        3: warning
+        4: info
+        5: debug
+
+    Less means receiving less information from CurveDNS (default: 2)
+
+-    <CURVEDNS_SOURCE_IP>: the IP address CurveDNS will use as source IP address when it forwards the query to the authoritative name server (default: let kernel decide). (This was added in CurveDNS 0.87.)
+
+
+
+## SEE ALSO
+-  man (1) <curvedns-keygen>
+-  [Installation and configuration from github](https://github.com/curvedns/curvedns/blob/master/INSTALL.md)
+
+
+
+## MANPAGE AUTHOR
+
+Stephane Neveu <stefneveu@gmail.com>

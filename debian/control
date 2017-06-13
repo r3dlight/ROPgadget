@@ -1,0 +1,24 @@
+Source: curvedns
+Section: net
+Priority: standard
+Build-Depends:
+ debhelper (>=10),
+ dh-python
+Maintainer: NEVEU Stephane <stefneveu@gmail.com>
+Homepage: https://github.com/JonathanSalwan/ROPgadget
+Standards-Version: 3.9.8
+Vcs-Git: https://github.com/r3dlight/ROPgadget.git
+Vcs-Browser: https://github.com/r3dlight/ROPgadget
+
+Package: curvedns
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         python-capstone,
+	 lsb-base (>=3.0-6)
+Architecture: any
+Description: DNS/DNSCurve forwarding name server - binaries
+ The curvedns package provides software for DNS/DNSCurve.
+ .
+ CurveDNS is the first publicly released forwarding implementation
+ that implements the DNSCurve protocol
+

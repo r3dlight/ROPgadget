@@ -1,0 +1,18 @@
+Description: Add support for debian hardening flags
+ Update CFLAGS and LDFLAGS assignment to support integration
+ of external variables.
+Author: Stéphane Neveu
+Last-Update: 2017-05-17
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -13,8 +13,8 @@
+ #EVLDFLAGS=-L$(EV)/lib
+ 
+ CC=@CC@
+-CFLAGS=@CFLAGS@ $(CDNSCFLAGS) $(EVCFLAGS)
+-LDFLAGS=-L$(NACLLIB) $(EVLDFLAGS)
++CFLAGS+=@CFLAGS@ $(CDNSCFLAGS) $(EVCFLAGS) $(CPPFLAGS)
++LDFLAGS+=-L$(NACLLIB) $(EVLDFLAGS)
+ 
+ # do not edit below
+

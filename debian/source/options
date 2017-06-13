@@ -1,0 +1,2 @@
+tar-ignore = ".git*|.*.pyc"
+extend-diff-ignore = ".git*|.gitlab-ci.yml|.*.pyc"

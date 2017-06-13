@@ -1,0 +1,4 @@
+version=4
+   https://github.com/curvedns/curvedns/tags \
+   (?:.*?/)?curvedns-?(\d[\d.]*)\.tar\.gz debian uupdate
+

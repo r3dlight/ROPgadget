@@ -1,0 +1,15 @@
+Description: Update spelling in sources
+ This patch correct all spelling errors in the sources.
+Author: Stephane Neveu
+Last-Update: 2017-06-02
+--- a/event_tcp.c
++++ b/event_tcp.c
+@@ -215,7 +215,7 @@
+ 	return;
+ 
+ wrong:
+-	debug_log(DEBUG_WARN, "event_tcp_write_cb(): catched wrong during %s TCP connection\n", internal ? "internal" : "external");
++	debug_log(DEBUG_WARN, "event_tcp_write_cb(): caught wrong during %s TCP connection\n", internal ? "internal" : "external");
+ 	event_cleanup_entry(loop, general_entry);
+ 	return;
+ }

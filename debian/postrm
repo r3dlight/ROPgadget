@@ -1,0 +1,15 @@
+#!/bin/sh -e
+set -e
+
+if [ x"$1" != "xpurge" ]; then
+    exit 0
+fi
+
+rm -rf /var/log/curvedns /etc/curvedns
+deluser --force curvedns || :
+deluser --force curvednslog || :
+
+#DEBHELPER#
+
+
+
